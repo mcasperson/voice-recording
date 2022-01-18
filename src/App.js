@@ -1,5 +1,6 @@
 import './App.css';
 import {ReactMediaRecorder} from "react-media-recorder";
+import Button from '@mui/material/Button';
 
 const readyToRecordStates = ["stopped", "idle"];
 const recordingStates = ["recording"];
@@ -9,16 +10,16 @@ function App() {
         <div className="App">
             <h1>Universal Translator</h1>
             <ReactMediaRecorder
-                video
+                audio
                 render={({status, startRecording, stopRecording, mediaBlobUrl}) => (
                     <div>
                         <p>
-                            <button onClick={startRecording} disabled={readyToRecordStates.indexOf(status) == -1}>Start
-                                Recording
-                            </button>
-                            <button onClick={stopRecording} disabled={recordingStates.indexOf(status) == -1}>Stop
-                                Recording
-                            </button>
+                            <Button onClick={startRecording} disabled={readyToRecordStates.indexOf(status) === -1}>
+                                Start Recording
+                            </Button>
+                            <Button onClick={stopRecording} disabled={recordingStates.indexOf(status) === -1}>
+                                Stop Recording
+                            </Button>
                         </p>
                         <p>
                             <audio src={mediaBlobUrl} controls/>
