@@ -1,6 +1,7 @@
 import './App.css';
 import {ReactMediaRecorder} from "react-media-recorder";
 import Button from '@mui/material/Button';
+import {Grid} from "@mui/material";
 
 const readyToRecordStates = ["stopped", "idle"];
 const recordingStates = ["recording"];
@@ -12,19 +13,27 @@ function App() {
             <ReactMediaRecorder
                 audio
                 render={({status, startRecording, stopRecording, mediaBlobUrl}) => (
-                    <div>
-                        <p>
-                            <Button onClick={startRecording} disabled={readyToRecordStates.indexOf(status) === -1}>
+                    <Grid
+                        container
+                        spacing={2}
+                        justifyContent="center"
+                        alignItems="center">
+                        <Grid item md={3} xs={0}/>
+                        <Grid item md={3} xs={12}>
+                            <Button variant="contained" onClick={startRecording} disabled={readyToRecordStates.indexOf(status) === -1}>
                                 Start Recording
                             </Button>
-                            <Button onClick={stopRecording} disabled={recordingStates.indexOf(status) === -1}>
+                        </Grid>
+                        <Grid item md={3} xs={12}>
+                            <Button variant="contained" onClick={stopRecording} disabled={recordingStates.indexOf(status) === -1}>
                                 Stop Recording
                             </Button>
-                        </p>
-                        <p>
+                        </Grid>
+                        <Grid item md={3} xs={0}/>
+                        <Grid item xs={12}>
                             <audio src={mediaBlobUrl} controls/>
-                        </p>
-                    </div>
+                        </Grid>
+                    </Grid>
                 )}
             />
         </div>
