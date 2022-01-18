@@ -32,6 +32,9 @@ function App() {
                         rowGap={2}
                         justifyContent="center"
                         alignItems="center">
+                        <Grid item xs={12}>
+                            <h3>Record your message</h3>
+                        </Grid>
                         <Grid item md={3} xs={0}/>
                         <Grid md={6} xs={12}>
                             <FormControl fullWidth>
@@ -41,23 +44,6 @@ function App() {
                                     value={inputLanguage}
                                     label="Recorded Language"
                                     onChange={handleInputLanguageChange}
-                                >
-                                    <MenuItem value={"English"}>English</MenuItem>
-                                    <MenuItem value={"German"}>German</MenuItem>
-                                    <MenuItem value={"Japanese"}>Japanese</MenuItem>
-                                </Select>
-                            </FormControl>
-                        </Grid>
-                        <Grid item md={3} xs={0}/>
-                        <Grid item md={3} xs={0}/>
-                        <Grid md={6} xs={12}>
-                            <FormControl fullWidth>
-                                <InputLabel id="language-label">Translated Language</InputLabel>
-                                <Select
-                                    labelId="language-label"
-                                    value={translatedLanguage}
-                                    label="Translated Language"
-                                    onChange={handleTranslatedLanguageChange}
                                 >
                                     <MenuItem value={"English"}>English</MenuItem>
                                     <MenuItem value={"German"}>German</MenuItem>
@@ -89,6 +75,37 @@ function App() {
                         <Grid item xs={12}>
                             <audio src={mediaBlobUrl} controls/>
                         </Grid>
+                        <Grid item xs={12}>
+                            <h3>Translate your message</h3>
+                        </Grid>
+                        <Grid item md={3} xs={0}/>
+                        <Grid md={6} xs={12}>
+                            <FormControl fullWidth>
+                                <InputLabel id="language-label">Translated Language</InputLabel>
+                                <Select
+                                    labelId="language-label"
+                                    value={translatedLanguage}
+                                    label="Translated Language"
+                                    onChange={handleTranslatedLanguageChange}
+                                >
+                                    <MenuItem value={"English"}>English</MenuItem>
+                                    <MenuItem value={"German"}>German</MenuItem>
+                                    <MenuItem value={"Japanese"}>Japanese</MenuItem>
+                                </Select>
+                            </FormControl>
+                        </Grid>
+                        <Grid item md={3} xs={0}/>
+                        <Grid item md={4} xs={0}/>
+                        <Grid item md={4} xs={12}>
+                            <Button
+                                variant="contained"
+                                className={"fullWidth"}
+                                onClick={stopRecording}
+                                disabled={true}>
+                                Translate
+                            </Button>
+                        </Grid>
+                        <Grid item md={4} xs={0}/>
                     </Grid>
                 )}
             />
