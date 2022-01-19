@@ -9,11 +9,19 @@ import {AppContext} from "./AppContext";
 function App() {
 
     const [mediaBlob, setMediaBlob] = React.useState(null);
+    const [transcribedTextId, setTranscribedTextId] = React.useState(null);
+    const [translatedTextUrl, setTranslatedTextUrl] = React.useState(null);
 
     return (
         <div className="App">
             <h1>Universal Translator</h1>
-            <AppContext.Provider value={{mediaBlob, setMediaBlob}}>
+            <AppContext.Provider value={{
+                mediaBlob,
+                setMediaBlob,
+                transcribedTextId,
+                setTranscribedTextId,
+                translatedTextUrl,
+                setTranslatedTextUrl}}>
                 <StepWizard>
                     <Record/>
                     <Transcribe/>

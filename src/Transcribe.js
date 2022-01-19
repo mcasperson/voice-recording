@@ -8,10 +8,38 @@ export const Transcribe = (params) => {
     const appContext = React.useContext(AppContext);
 
     const [inputLanguage, setInputLanguage] = useState("English");
+    const [transcribedText, setTranscribedText] = useState("");
 
     const handleInputLanguageChange = (event) => {
         setInputLanguage(event.target.value);
     };
+
+    const getTranscribedText = (id) => {
+        fetch("/transcribed/" + id)
+            .then(response => response.json)
+            .then(data => {
+                if (data.status === "Finished") {
+                    setTranscribedText(data.text);
+                } else {
+                    window.setTimeout(() => getTranscribedText(id), 5000);
+                }
+            })
+    }
+
+    const uploadBlob = async () => {
+        const audioBlob = await fetch(appContext.mediaBlob).then(r => r.blob());
+
+        const audioFile = new File([audioBlob], "audiofile.webm", {type: "audio/webm"})
+
+        const data = new FormData()
+        data.append('file', audioFile)
+        data.append('language', inputLanguage)
+
+        fetch('/recordings', {
+            method: 'POST',
+            body: data
+        }).then(response => getTranscribedText(response))
+    }
 
     return <div>
         <Grid
@@ -45,19 +73,21 @@ export const Transcribe = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    disabled={true}>
+                    disabled={true}
+                    onClick={uploadBlob}>
                     Transcribe
                 </Button>
             </Grid>
             <Grid item md={4} xs={0}/>
             <Grid item md={3} xs={0}/>
             <Grid item md={6} xs={12}>
-               <TextField
-                   rows={10}
-                   multiline={true}
-                   fullWidth={true}
-                   disabled={true}
-               />
+                <TextField
+                    rows={10}
+                    multiline={true}
+                    fullWidth={true}
+                    disabled={true}
+                    value={transcribedText}
+                />
             </Grid>
             <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={0}/>
@@ -65,7 +95,8 @@ export const Transcribe = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    onClick={()=>params.nextStep()}>
+                    onClick={() => params.nextStep()}
+                    disabled={!transcribedText}>
                     Translate >
                 </Button>
             </Grid>
