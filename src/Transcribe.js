@@ -8,25 +8,12 @@ export const Transcribe = (params) => {
     const appContext = React.useContext(AppContext);
 
     const [inputLanguage, setInputLanguage] = useState("English");
-    const [transcribedText, setTranscribedText] = useState("");
 
     const handleInputLanguageChange = (event) => {
         setInputLanguage(event.target.value);
     };
 
-    const getTranscribedText = (id) => {
-        fetch("/transcribed/" + id)
-            .then(response => response.json)
-            .then(data => {
-                if (data.status === "Finished") {
-                    setTranscribedText(data.text);
-                } else {
-                    window.setTimeout(() => getTranscribedText(id), 5000);
-                }
-            })
-    }
-
-    const uploadBlob = async () => {
+    const transcribeText = async () => {
         const audioBlob = await fetch(appContext.mediaBlob).then(r => r.blob());
 
         const audioFile = new File([audioBlob], "audiofile.webm", {type: "audio/webm"})
@@ -38,7 +25,7 @@ export const Transcribe = (params) => {
         fetch('/recordings', {
             method: 'POST',
             body: data
-        }).then(response => getTranscribedText(response))
+        }).then(response => appContext.setTranscribedText(response))
     }
 
     return <div>
@@ -74,7 +61,7 @@ export const Transcribe = (params) => {
                     variant="contained"
                     className={"fullWidth"}
                     disabled={true}
-                    onClick={uploadBlob}>
+                    onClick={transcribeText}>
                     Transcribe
                 </Button>
             </Grid>
@@ -86,7 +73,7 @@ export const Transcribe = (params) => {
                     multiline={true}
                     fullWidth={true}
                     disabled={true}
-                    value={transcribedText}
+                    value={appContext.transcribedText}
                 />
             </Grid>
             <Grid item md={3} xs={0}/>
@@ -96,7 +83,7 @@ export const Transcribe = (params) => {
                     variant="contained"
                     className={"fullWidth"}
                     onClick={() => params.nextStep()}
-                    disabled={!transcribedText}>
+                    disabled={!appContext.transcribedText}>
                     Translate >
                 </Button>
             </Grid>
