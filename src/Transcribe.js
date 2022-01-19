@@ -2,8 +2,11 @@ import * as React from "react";
 import {FormControl, Grid, InputLabel, MenuItem, Select, TextField} from "@mui/material";
 import Button from "@mui/material/Button";
 import {useState} from "react";
+import {AppContext} from "./AppContext";
 
 export const Transcribe = (params) => {
+    const appContext = React.useContext(AppContext);
+
     const [inputLanguage, setInputLanguage] = useState("English");
 
     const handleInputLanguageChange = (event) => {

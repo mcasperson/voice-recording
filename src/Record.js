@@ -2,12 +2,22 @@ import * as React from "react";
 import {ReactMediaRecorder} from "react-media-recorder";
 import {Grid} from "@mui/material";
 import Button from "@mui/material/Button";
+import {AppContext} from "./AppContext";
 
 const readyToRecordStates = ["stopped", "idle"];
 const recordingStates = ["recording"];
 const recordedStates = ["stopped"];
 
 export const Record = (params) => {
+    const appContext = React.useContext(AppContext);
+
+    function handleNext(mediaBlobUrl) {
+        return () => {
+            appContext.setMediaBlob(mediaBlobUrl);
+            params.nextStep();
+        }
+    }
+
     return (
         <div>
             <ReactMediaRecorder
@@ -51,7 +61,7 @@ export const Record = (params) => {
                             <Button
                                 variant="contained"
                                 className={"fullWidth"}
-                                onClick={()=>params.nextStep()}
+                                onClick={handleNext(mediaBlobUrl)}
                                 disabled={recordedStates.indexOf(status) === -1}>
                                 Transcribe >
                             </Button>
