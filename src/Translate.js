@@ -25,8 +25,8 @@ export const Translate = (params) => {
             method: 'POST',
             body: data
         })
-            .then(response => response.text())
-            .then(data => appContext.setTranslatedText(data))
+            .then(response => response.json())
+            .then(data => appContext.setTranslatedText(data[0].translations[0].text))
             .finally(() => setProcessing(false))
     }
 
