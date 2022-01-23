@@ -21,7 +21,8 @@ export const Record = (params) => {
     return (
         <div>
             <ReactMediaRecorder
-                audio
+                audio={true}
+                video={false}
                 render={({status, startRecording, stopRecording, mediaBlobUrl}) => (
                     <Grid
                         container

@@ -9,7 +9,7 @@ import {AppContext} from "./AppContext";
 function App() {
 
     const [mediaBlob, setMediaBlob] = React.useState(null);
-    const [transcribedTextId, setTranscribedTextId] = React.useState(null);
+    const [transcribedText, setTranscribedText] = React.useState(null);
     const [translatedTextUrl, setTranslatedTextUrl] = React.useState(null);
 
     return (
@@ -18,8 +18,8 @@ function App() {
             <AppContext.Provider value={{
                 mediaBlob,
                 setMediaBlob,
-                transcribedTextId,
-                setTranscribedTextId,
+                transcribedText,
+                setTranscribedText,
                 translatedTextUrl,
                 setTranslatedTextUrl}}>
                 <StepWizard>
