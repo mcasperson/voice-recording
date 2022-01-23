@@ -9,11 +9,26 @@ export const Translate = (params) => {
 
     const [processing, setProcessing] = useState(false);
 
-    const [outputLanguage, setOutputLanguage] = useState("German");
-
     const handleOutputLanguageChange = (event) => {
-        setOutputLanguage(event.target.value);
+        appContext.setTargetLanguage(event.target.value);
     };
+
+    const translateText = async () => {
+        setProcessing(true);
+
+        const data = new FormData();
+        data.append('input', appContext.transcribedText);
+        data.append('sourceLanguage', appContext.sourceLanguage);
+        data.append('targetLanguage', appContext.targetLanguage);
+
+        fetch('http://localhost:8080/translate', {
+            method: 'POST',
+            body: data
+        })
+            .then(response => response.text())
+            .then(data => appContext.setTranslatedText(data))
+            .finally(() => setProcessing(false))
+    }
 
     return <div>
         <Grid
@@ -31,13 +46,13 @@ export const Translate = (params) => {
                     <InputLabel id="outputLanguage-label">Translated Language</InputLabel>
                     <Select
                         labelId="outputLanguage-label"
-                        value={outputLanguage}
-                        label="Recorded Language"
+                        value={appContext.targetLanguage}
+                        label="Translated Language"
                         onChange={handleOutputLanguageChange}
                     >
-                        <MenuItem value={"English"}>English</MenuItem>
-                        <MenuItem value={"German"}>German</MenuItem>
-                        <MenuItem value={"Japanese"}>Japanese</MenuItem>
+                        <MenuItem value={"en-US"}>English</MenuItem>
+                        <MenuItem value={"de-DE"}>German</MenuItem>
+                        <MenuItem value={"ja-JP"}>Japanese</MenuItem>
                     </Select>
                 </FormControl>
             </Grid>
@@ -47,7 +62,7 @@ export const Translate = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    disabled={true}>
+                    onClick={translateText}>
                     Translate
                 </Button>
             </Grid>
