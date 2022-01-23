@@ -10,7 +10,7 @@ function App() {
 
     const [mediaBlob, setMediaBlob] = React.useState(null);
     const [transcribedText, setTranscribedText] = React.useState(null);
-    const [translatedTextUrl, setTranslatedTextUrl] = React.useState(null);
+    const [translatedText, setTranslatedText] = React.useState(null);
 
     return (
         <div className="App">
@@ -20,8 +20,8 @@ function App() {
                 setMediaBlob,
                 transcribedText,
                 setTranscribedText,
-                translatedTextUrl,
-                setTranslatedTextUrl}}>
+                translatedText,
+                setTranslatedText}}>
                 <StepWizard>
                     <Record/>
                     <Transcribe/>

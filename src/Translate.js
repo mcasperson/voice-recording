@@ -7,6 +7,8 @@ import {AppContext} from "./AppContext";
 export const Translate = (params) => {
     const appContext = React.useContext(AppContext);
 
+    const [processing, setProcessing] = useState(false);
+
     const [outputLanguage, setOutputLanguage] = useState("German");
 
     const handleOutputLanguageChange = (event) => {
@@ -50,6 +52,36 @@ export const Translate = (params) => {
                 </Button>
             </Grid>
             <Grid item md={4} xs={0}/>
+            <Grid item md={3} xs={0}/>
+            <Grid item md={6} xs={12}>
+                <TextField
+                    rows={10}
+                    multiline={true}
+                    fullWidth={true}
+                    disabled={true}
+                    value={appContext.translatedText}
+                />
+            </Grid>
+            <Grid item md={3} xs={0}/>
+            <Grid item md={3} xs={12}>
+                <Button
+                    variant="contained"
+                    className={"fullWidth"}
+                    onClick={() => params.previousStep()}
+                    disabled={processing}>
+                    &lt; Transcribe
+                </Button>
+            </Grid>
+            <Grid item md={3} xs={0}/>
+            <Grid item md={3} xs={12}>
+                <Button
+                    variant="contained"
+                    className={"fullWidth"}
+                    onClick={() => params.nextStep()}
+                    disabled={!appContext.translatedText || processing}>
+                    Speak &gt;
+                </Button>
+            </Grid>
         </Grid>
     </div>;
 }

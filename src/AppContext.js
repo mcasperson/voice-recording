@@ -3,8 +3,8 @@ import * as React from "react";
 export const AppContext = React.createContext({
     setMediaBlob: (blob) => {},
     mediaBlob: null,
-    setTranscribedText: (id) => {},
+    setTranscribedText: (text) => {},
     transcribedText: null,
-    setTranslatedTextUrl: (url) => {},
-    translatedTextUrl: null
+    setTranslatedText: (text) => {},
+    translatedText: null
 });

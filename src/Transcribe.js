@@ -9,7 +9,6 @@ export const Transcribe = (params) => {
 
     const [processing, setProcessing] = useState(false);
 
-
     const transcribeText = async () => {
         setProcessing(true);
 
