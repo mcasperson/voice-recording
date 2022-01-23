@@ -14,9 +14,13 @@ export const Speak = (params) => {
         setProcessing(true);
         setAudioBlob(null);
 
+        const data = new FormData();
+        data.append('input', appContext.translatedText);
+        data.append('targetLanguage', appContext.targetLanguage);
+
         fetch('http://localhost:8080/speak', {
             method: 'POST',
-            body: appContext.translatedText
+            body: data
         })
             .then(response => response.blob())
             .then(blob => {
@@ -44,7 +48,7 @@ export const Speak = (params) => {
                     variant="contained"
                     className={"fullWidth"}
                     disabled={processing}
-                    onClick={() => params.previousStep()}>
+                    onClick={convertText}>
                     Speak
                 </Button>
             </Grid>
