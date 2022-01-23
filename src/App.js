@@ -10,8 +10,8 @@ import {Speak} from "./Speak";
 function App() {
 
     const [mediaBlob, setMediaBlob] = React.useState(null);
-    const [transcribedText, setTranscribedText] = React.useState(null);
-    const [translatedText, setTranslatedText] = React.useState(null);
+    const [transcribedText, setTranscribedText] = React.useState("");
+    const [translatedText, setTranslatedText] = React.useState("");
     const [sourceLanguage, setSourceLanguage] = React.useState("en-US");
     const [targetLanguage, setTargetLanguage] = React.useState("de-DE");
 

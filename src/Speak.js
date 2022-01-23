@@ -63,7 +63,10 @@ export const Speak = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    onClick={() => params.previousStep()}
+                    onClick={() => {
+                        setAudioBlob(null);
+                        params.previousStep()
+                    }}
                     disabled={processing}>
                     &lt; Translate
                 </Button>

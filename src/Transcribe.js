@@ -10,11 +10,13 @@ export const Transcribe = (params) => {
     const [processing, setProcessing] = useState(false);
 
     const handleOutputLanguageChange = (event) => {
+        appContext.setTranscribedText("");
         appContext.setSourceLanguage(event.target.value);
     };
 
     const transcribeText = async () => {
         setProcessing(true);
+        appContext.setTranscribedText(null);
 
         const audioBlob = await fetch(appContext.mediaBlob).then(r => r.blob());
 
@@ -87,7 +89,10 @@ export const Transcribe = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    onClick={() => params.previousStep()}
+                    onClick={() => {
+                        appContext.setTranscribedText("");
+                        params.previousStep();
+                    }}
                     disabled={processing}>
                     &lt; Record
                 </Button>

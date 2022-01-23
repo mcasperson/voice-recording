@@ -10,6 +10,7 @@ export const Translate = (params) => {
     const [processing, setProcessing] = useState(false);
 
     const handleOutputLanguageChange = (event) => {
+        appContext.setTranslatedText("");
         appContext.setTargetLanguage(event.target.value);
     };
 
@@ -82,7 +83,10 @@ export const Translate = (params) => {
                 <Button
                     variant="contained"
                     className={"fullWidth"}
-                    onClick={() => params.previousStep()}
+                    onClick={() => {
+                        appContext.setTranslatedText("");
+                        params.previousStep();
+                    }}
                     disabled={processing}>
                     &lt; Transcribe
                 </Button>
