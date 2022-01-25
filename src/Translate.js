@@ -80,6 +80,7 @@ export const Translate = (params) => {
                 />
             </Grid>
             <Grid item md={3} xs={0}/>
+            <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={12}>
                 <Button
                     variant="contained"
@@ -92,7 +93,6 @@ export const Translate = (params) => {
                     &lt; Transcribe
                 </Button>
             </Grid>
-            <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={12}>
                 <Button
                     variant="contained"
@@ -102,6 +102,7 @@ export const Translate = (params) => {
                     Speak &gt;
                 </Button>
             </Grid>
+            <Grid item md={3} xs={0}/>
         </Grid>
     </div>;
 }

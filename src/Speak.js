@@ -60,6 +60,7 @@ export const Speak = (params) => {
                     <audio controls="controls" src={audioBlob} type="audio/wav"/>}
             </Grid>
             <Grid item md={4} xs={0}/>
+            <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={12}>
                 <Button
                     variant="contained"
@@ -72,6 +73,7 @@ export const Speak = (params) => {
                     &lt; Translate
                 </Button>
             </Grid>
+            <Grid item md={6} xs={0}/>
         </Grid>
     </div>;
 }

@@ -85,6 +85,7 @@ export const Transcribe = (params) => {
                 />
             </Grid>
             <Grid item md={3} xs={0}/>
+            <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={12}>
                 <Button
                     variant="contained"
@@ -97,7 +98,6 @@ export const Transcribe = (params) => {
                     &lt; Record
                 </Button>
             </Grid>
-            <Grid item md={3} xs={0}/>
             <Grid item md={3} xs={12}>
                 <Button
                     variant="contained"
@@ -107,6 +107,7 @@ export const Transcribe = (params) => {
                     Translate &gt;
                 </Button>
             </Grid>
+            <Grid item md={3} xs={0}/>
         </Grid>
     </div>;
 }
