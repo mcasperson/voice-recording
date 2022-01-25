@@ -46,8 +46,8 @@ export const Transcribe = (params) => {
             <Grid item xs={12}>
                 <h3>Transcribe your message</h3>
             </Grid>
-            <Grid item md={4} xs={0}/>
-            <Grid item md={4} xs={12}>
+            <Grid item md={3} xs={0}/>
+            <Grid item md={6} xs={12}>
                 <FormControl fullWidth>
                     <InputLabel id="outputLanguage-label">Recorded Language</InputLabel>
                     <Select
@@ -62,7 +62,7 @@ export const Transcribe = (params) => {
                     </Select>
                 </FormControl>
             </Grid>
-            <Grid item md={4} xs={0}/>
+            <Grid item md={3} xs={0}/>
             <Grid item md={4} xs={0}/>
             <Grid item md={4} xs={12}>
                 <Button
