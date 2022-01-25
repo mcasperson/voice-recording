@@ -53,7 +53,6 @@ jobs:
           # If there is a build directory, assume that is what we want to package
           if [[ -d "build" ]]; then
             SOURCEPATH=build
-            OUTPUTPATH=..
           fi
           octo pack \
            --basePath ${SOURCEPATH} \
