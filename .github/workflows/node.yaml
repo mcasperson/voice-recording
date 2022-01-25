@@ -109,7 +109,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: 'upload'
           app_location: '/'
-          output_location: 'build'
 name: Node.js Build
 'on':
   workflow_dispatch: {}
