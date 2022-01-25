@@ -10,5 +10,6 @@ export const AppContext = React.createContext({
     setTranscribedText: (text) => {},
     transcribedText: null,
     setTranslatedText: (text) => {},
-    translatedText: null
+    translatedText: null,
+    config: null
 });

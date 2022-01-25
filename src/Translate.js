@@ -22,7 +22,7 @@ export const Translate = (params) => {
         data.append('sourceLanguage', appContext.sourceLanguage);
         data.append('targetLanguage', appContext.targetLanguage);
 
-        fetch('http://localhost:8080/translate', {
+        fetch(appContext.config.translateEndpoint, {
             method: 'POST',
             body: data
         })
