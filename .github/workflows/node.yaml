@@ -40,6 +40,11 @@ jobs:
         with:
           name: Dependencies Updates
           path: dependencyUpdates.txt
+      - name: Update config.json
+        run: |-
+          echo "`jq '.speakEndpoint="${{ secrets.SPEAK_ENDPOINT }}"' public/config.json`" > public/config.json
+          echo "`jq '.transcribeEndpoint="${{ secrets.TRANSCRIBE_ENDPOINT }}"' public/config.json`" > public/config.json
+          echo "`jq '.translateEndpoint="${{ secrets.TRANSLATE_ENDPOINT }}"' public/config.json`" > public/config.json
       - name: Test
         run: npm test || true
         shell: bash
