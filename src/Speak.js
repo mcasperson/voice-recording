@@ -27,6 +27,7 @@ export const Speak = (params) => {
                 const objectURL = URL.createObjectURL(blob);
                 setAudioBlob(objectURL);
             })
+            .catch(() => window.alert("Failed to convert message to speech"))
             .finally(() => {
                 setProcessing(false);
             })

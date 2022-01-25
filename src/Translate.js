@@ -28,6 +28,7 @@ export const Translate = (params) => {
         })
             .then(response => response.json())
             .then(data => appContext.setTranslatedText(data[0].translations[0].text))
+            .catch(() => window.alert("Failed to translate message"))
             .finally(() => setProcessing(false))
     }
 
