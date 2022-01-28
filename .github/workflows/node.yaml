@@ -42,7 +42,7 @@ jobs:
           path: dependencyUpdates.txt
       - name: Update config.json
         run: |-
-          echo "`jq '.translateService="/api"' public/config.json`" > public/config.json
+          echo "`jq '.translateService="${{ secrets.API_URL }}"' public/config.json`" > public/config.json
       - name: Test
         run: npm test || true
         shell: bash
