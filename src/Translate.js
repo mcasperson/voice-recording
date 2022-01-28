@@ -17,14 +17,10 @@ export const Translate = (params) => {
     const translateText = async () => {
         setProcessing(true);
 
-        const data = new FormData();
-        data.append('input', appContext.transcribedText);
-        data.append('sourceLanguage', appContext.sourceLanguage);
-        data.append('targetLanguage', appContext.targetLanguage);
-
-        fetch(appContext.config.translateService + "/translate", {
-            method: 'POST',
-            body: data
+        fetch(appContext.config.translateService + "/translate?sourceLanguage=" +  appContext.sourceLanguage + "&targetLanguage=" + appContext.targetLanguage, {
+            method: 'appContext.transcribedText',
+            body: data,
+            headers: {"Content-Type": "text/plain"}
         })
             .then(response => response.json())
             .then(data => appContext.setTranslatedText(data[0].translations[0].text))

@@ -14,13 +14,10 @@ export const Speak = (params) => {
         setProcessing(true);
         setAudioBlob(null);
 
-        const data = new FormData();
-        data.append('input', appContext.translatedText);
-        data.append('targetLanguage', appContext.targetLanguage);
-
-        fetch(appContext.config.translateService + "/speak", {
+        fetch(appContext.config.translateService + "/speak?targetLanguage=" + appContext.targetLanguage, {
             method: 'POST',
-            body: data
+            body: appContext.translatedText,
+            headers: {"Content-Type": "text/plain"}
         })
             .then(response => response.blob())
             .then(blob => {

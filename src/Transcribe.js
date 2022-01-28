@@ -20,15 +20,10 @@ export const Transcribe = (params) => {
 
         const audioBlob = await fetch(appContext.mediaBlob).then(r => r.blob());
 
-        const audioFile = new File([audioBlob], "audiofile.webm", {type: "audio/webm"});
-
-        const data = new FormData();
-        data.append('file', audioFile);
-        data.append('sourceLanguage', appContext.sourceLanguage);
-
-        fetch(appContext.config.translateService + "/transcribe", {
+        fetch(appContext.config.translateService + "/transcribe?language=" + appContext.sourceLanguage, {
             method: 'POST',
-            body: data
+            body: audioBlob,
+            headers: {"Content-Type": "application/octet-stream"}
         })
             .then(response => response.text())
             .then(data => appContext.setTranscribedText(data))
