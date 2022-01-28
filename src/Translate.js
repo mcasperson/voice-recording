@@ -18,7 +18,7 @@ export const Translate = (params) => {
         setProcessing(true);
 
         fetch(appContext.config.translateService + "/translate?sourceLanguage=" +  appContext.sourceLanguage + "&targetLanguage=" + appContext.targetLanguage, {
-            method: 'appContext.transcribedText',
+            method: 'POST',
             body: appContext.transcribedText,
             headers: {"Content-Type": "text/plain"}
         })
