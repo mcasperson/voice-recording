@@ -114,7 +114,7 @@ jobs:
           app_location: '/'
           api_location: ''
       - name: Show Static App Config
-        run: cat .github/workflows/*.yml
+        run: ls .github/workflows/*.yml
         shell: bash
 name: Node.js Build
 'on':
