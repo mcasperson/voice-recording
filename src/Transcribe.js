@@ -26,7 +26,7 @@ export const Transcribe = (params) => {
         data.append('file', audioFile);
         data.append('sourceLanguage', appContext.sourceLanguage);
 
-        fetch(appContext.config.transcribeEndpoint, {
+        fetch(appContext.config.translateService + "/transcribe", {
             method: 'POST',
             body: data
         })

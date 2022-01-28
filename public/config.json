@@ -1,5 +1,3 @@
 {
-  "speakEndpoint": "http://localhost:8080/speak",
-  "transcribeEndpoint": "http://localhost:8080/transcribe",
-  "translateEndpoint": "http://localhost:8080/translate"
+  "translateService": "http://localhost:8080/"
 }

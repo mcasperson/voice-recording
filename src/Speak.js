@@ -18,7 +18,7 @@ export const Speak = (params) => {
         data.append('input', appContext.translatedText);
         data.append('targetLanguage', appContext.targetLanguage);
 
-        fetch(appContext.config.speakEndpoint, {
+        fetch(appContext.config.translateService + "/speak", {
             method: 'POST',
             body: data
         })
